@@ -40,3 +40,21 @@ header h1 {
   display: inline-block;
   margin-top: 0.5rem;
 }
+
+.header-controls {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+select {
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  border: 2px solid #e2e8f0;
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+  background: white;
+}
