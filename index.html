@@ -25,6 +25,29 @@
   				</select>
 			</div>
 		</header>
+
+		<div class="grid">
+
+  			<section id="todo" class="card">
+    			<h2>📋 To Do</h2>
+    			<ul class="task-list" id="list-todo"></ul>
+    			<button class="add-task-btn" data-column="todo">+ Add Task</button>
+  			</section>
+
+  			<section id="inprogress" class="card">
+    			<h2>⚙️ In Progress</h2>
+    			<ul class="task-list" id="list-inprogress"></ul>
+    			<button class="add-task-btn" data-column="inprogress">+ Add Task</button>
+  			</section>
+
+  			<section id="done" class="card">
+    			<h2>✅ Done</h2>
+    			<ul class="task-list" id="list-done"></ul>
+    			<button class="add-task-btn" data-column="done">+ Add Task</button>
+    			<button class="clear-done-btn" id="clearDoneBtn">🗑 Clear All</button>
+  			</section>
+
+		</div>
 	</div>
 
 	<script src="taskmanager.js"></script>
