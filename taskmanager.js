@@ -146,3 +146,14 @@ function updateTask(taskId, updatedData) {
         oldCard.replaceWith(newCard);
     }
 }
+
+function openModal(column) {
+    currentColumn = column;
+    editingId     = null; // adding, not editing
+    taskTitle.value    = '';
+    taskDesc.value     = '';
+    taskPriority.value = 'high';
+    taskDue.value      = '';
+    modal.classList.add('active');
+    taskTitle.focus();
+}
