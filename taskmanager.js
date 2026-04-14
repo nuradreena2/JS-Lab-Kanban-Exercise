@@ -47,6 +47,10 @@ function createTaskCard(taskObj) {
     const titleSpan = document.createElement('span');
     titleSpan.textContent = taskObj.title;
 
+    titleSpan.addEventListener('dblclick', function() {
+    	inlineEdit(titleSpan, taskObj.id);
+	});
+
     titleDiv.appendChild(titleSpan);
 
     // priority badge
@@ -162,4 +166,32 @@ function closeModal() {
     modal.classList.remove('active');
     editingId     = null;
     currentColumn = null;
+}
+
+function inlineEdit(titleSpan, taskId) {
+    const oldText = titleSpan.textContent;
+
+    const input = document.createElement('input');
+    input.type  = 'text';
+    input.value = oldText;
+    titleSpan.replaceWith(input);
+    input.focus();
+
+    input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') input.blur();
+    });
+
+    input.addEventListener('blur', function() {
+        const newText = input.value.trim();
+
+        const found = tasks.find(t => t.id === taskId);
+        if (found && newText !== '') found.title = newText;
+
+        const newSpan = document.createElement('span');
+        newSpan.textContent = newText !== '' ? newText : oldText;
+        newSpan.addEventListener('dblclick', function() {
+            inlineEdit(newSpan, taskId);
+        });
+        input.replaceWith(newSpan);
+    });
 }
