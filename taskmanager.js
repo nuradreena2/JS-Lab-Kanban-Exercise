@@ -87,3 +87,13 @@ function createTaskCard(taskObj) {
 
     return li;
 }
+
+function addTask(column, taskObj) {
+    tasks.push(taskObj);
+
+    const list = getListElement(column);
+    const card = createTaskCard(taskObj);
+    list.appendChild(card);
+
+    updateCounter();
+}
