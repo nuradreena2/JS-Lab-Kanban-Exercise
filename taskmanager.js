@@ -209,3 +209,28 @@ function filterTasks() {
         card.classList.toggle('is-hidden', hide);
     });
 }
+
+function clearDone() {
+    const doneCards = listDone.querySelectorAll('.task-card');
+
+    if (doneCards.length === 0) {
+        alert('No done tasks to clear.');
+        return;
+    }
+
+    const ok = confirm(`Delete all ${doneCards.length} done tasks?`);
+    if (!ok) return;
+
+    doneCards.forEach(function(card, index) {
+        setTimeout(function() {
+            card.classList.add('fade-out');
+            setTimeout(function() {
+                const id  = parseInt(card.getAttribute('data-id'), 10);
+                const idx = tasks.findIndex(t => t.id === id);
+                if (idx !== -1) tasks.splice(idx, 1);
+                card.remove();
+                updateCounter();
+            }, 400);
+        }, index * 100); 
+    });
+}
