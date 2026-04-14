@@ -118,3 +118,16 @@ function deleteTask(taskId) {
     }
 }
 
+function editTask(taskId) {
+    const found = tasks.find(t => t.id === taskId);
+    if (!found) return;
+
+    editingId = taskId; // flag: we are editing, not adding
+    taskTitle.value    = found.title;
+    taskDesc.value     = found.desc;
+    taskPriority.value = found.priority;
+    taskDue.value      = found.due;
+    modal.classList.add('active');
+    taskTitle.focus();
+}
+
