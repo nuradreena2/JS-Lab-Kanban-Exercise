@@ -32,3 +32,58 @@ function getListElement(column) {
     if (column === 'inprogress') return listInprogress;
     if (column === 'done')       return listDone;
 }
+
+function createTaskCard(taskObj) {
+
+    // wrapper <li>
+    const li = document.createElement('li');
+    li.setAttribute('data-id', taskObj.id);
+    li.classList.add('task-card');
+
+    // title row
+    const titleDiv = document.createElement('div');
+    titleDiv.classList.add('task-title');
+
+    const titleSpan = document.createElement('span');
+    titleSpan.textContent = taskObj.title;
+
+    titleDiv.appendChild(titleSpan);
+
+    // priority badge
+    const badge = document.createElement('span');
+    badge.classList.add('priority-badge', `priority-${taskObj.priority}`);
+    badge.textContent = taskObj.priority;
+
+    // description
+    const descP = document.createElement('p');
+    descP.classList.add('task-desc');
+    descP.textContent = taskObj.desc || '(no description)';
+
+    // due date
+    const dueP = document.createElement('p');
+    dueP.classList.add('task-due');
+    dueP.textContent = taskObj.due ? `Due: ${taskObj.due}` : '';
+
+    // edit and delete buttons
+    const editBtn = document.createElement('button');
+    editBtn.textContent = '✏ Edit';
+    editBtn.classList.add('btn-edit');
+    editBtn.setAttribute('data-action', 'edit');
+    editBtn.setAttribute('data-id', taskObj.id);
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = '🗑 Delete';
+    deleteBtn.classList.add('btn-delete');
+    deleteBtn.setAttribute('data-action', 'delete');
+    deleteBtn.setAttribute('data-id', taskObj.id);
+
+    // assemble the card
+    li.appendChild(titleDiv);
+    li.appendChild(badge);
+    li.appendChild(descP);
+    li.appendChild(dueP);
+    li.appendChild(editBtn);
+    li.appendChild(deleteBtn);
+
+    return li;
+}
