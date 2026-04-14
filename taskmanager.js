@@ -131,3 +131,18 @@ function editTask(taskId) {
     taskTitle.focus();
 }
 
+function updateTask(taskId, updatedData) {
+    const found = tasks.find(t => t.id === taskId);
+    if (!found) return;
+
+    found.title    = updatedData.title;
+    found.desc     = updatedData.desc;
+    found.priority = updatedData.priority;
+    found.due      = updatedData.due;
+
+    const oldCard = document.querySelector(`[data-id="${taskId}"]`);
+    if (oldCard) {
+        const newCard = createTaskCard(found);
+        oldCard.replaceWith(newCard);
+    }
+}
