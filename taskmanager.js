@@ -20,3 +20,9 @@ const clearDoneBtn   = document.getElementById('clearDoneBtn');
 const listTodo       = document.getElementById('list-todo');
 const listInprogress = document.getElementById('list-inprogress');
 const listDone       = document.getElementById('list-done');
+
+function updateCounter() {
+    const count = tasks.length;
+    taskCounter.textContent =
+        count === 1 ? '1 task' : `${count} tasks`;
+}
