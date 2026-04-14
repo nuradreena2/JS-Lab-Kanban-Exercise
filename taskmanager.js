@@ -97,3 +97,24 @@ function addTask(column, taskObj) {
 
     updateCounter();
 }
+
+function deleteTask(taskId) {
+    const ok = confirm('Delete this task?');
+    if (!ok) return;
+
+    // remove from tasks array
+    const index = tasks.findIndex(t => t.id === taskId);
+    if (index !== -1) tasks.splice(index, 1);
+
+    // find the card and fade it out
+    const card = document.querySelector(`[data-id="${taskId}"]`);
+    if (card) {
+        card.classList.add('fade-out');
+        // remove from DOM after fade ends (400ms matches CSS transition)
+        setTimeout(function() {
+            card.remove();
+            updateCounter();
+        }, 400);
+    }
+}
+
