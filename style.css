@@ -138,3 +138,8 @@ input, textarea {
 input:focus, textarea:focus { border-color: #3b82f6; }
 
 .modal-buttons { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
+
+footer {
+  text-align: center; margin-top: 2rem;
+  font-size: 0.7rem; color: #5b6e8c;
+}
