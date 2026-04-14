@@ -195,3 +195,17 @@ function inlineEdit(titleSpan, taskId) {
         input.replaceWith(newSpan);
     });
 }
+
+function filterTasks() {
+    const selected = filterSelect.value;
+
+    const allCards = document.querySelectorAll('.task-card');
+    allCards.forEach(function(card) {
+        const id    = parseInt(card.getAttribute('data-id'), 10);
+        const found = tasks.find(t => t.id === id);
+        if (!found) return;
+
+        const hide = selected !== 'all' && found.priority !== selected;
+        card.classList.toggle('is-hidden', hide);
+    });
+}
