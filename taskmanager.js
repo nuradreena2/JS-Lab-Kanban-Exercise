@@ -26,3 +26,9 @@ function updateCounter() {
     taskCounter.textContent =
         count === 1 ? '1 task' : `${count} tasks`;
 }
+
+function getListElement(column) {
+    if (column === 'todo')       return listTodo;
+    if (column === 'inprogress') return listInprogress;
+    if (column === 'done')       return listDone;
+}
