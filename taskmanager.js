@@ -157,3 +157,9 @@ function openModal(column) {
     modal.classList.add('active');
     taskTitle.focus();
 }
+
+function closeModal() {
+    modal.classList.remove('active');
+    editingId     = null;
+    currentColumn = null;
+}
