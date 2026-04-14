@@ -107,3 +107,34 @@ select {
 .is-hidden { display: none; }
 
 .fade-out { opacity: 0; transition: opacity 0.4s ease; }
+
+/*Pop-up Form(Modal)*/
+
+.modal-overlay {
+  display: none; position: fixed;
+  inset: 0; background: rgba(0,0,0,0.4);
+  justify-content: center; align-items: center;
+  z-index: 100;
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal-box { width: 100%; max-width: 420px; }
+
+.form-group { margin-bottom: 1rem; }
+
+label {
+  font-weight: 600; font-size: 0.8rem;
+  text-transform: uppercase; color: #475569;
+  display: block; margin-bottom: 0.3rem;
+}
+
+input, textarea {
+  width: 100%; padding: 0.7rem;
+  border: 2px solid #e2e8f0; border-radius: 1rem;
+  font-family: inherit; outline: none;
+}
+
+input:focus, textarea:focus { border-color: #3b82f6; }
+
+.modal-buttons { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
