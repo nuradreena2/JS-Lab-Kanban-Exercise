@@ -234,3 +234,78 @@ function clearDone() {
         }, index * 100); 
     });
 }
+
+function init() {
+
+    // open pop-up when +Add Task is clicked
+    document.querySelectorAll('.add-task-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            openModal(btn.getAttribute('data-column'));
+        });
+    });
+
+    // save task button inside Pop-up
+    saveTaskBtn.addEventListener('click', function() {
+        const title = taskTitle.value.trim();
+        if (title === '') {
+            alert('❌ Title cannot be empty!');
+            taskTitle.focus();
+            return;
+        }
+
+        const taskObj = {
+            id:       editingId ? editingId : nextId++,
+            title:    title,
+            desc:     taskDesc.value.trim(),
+            priority: taskPriority.value,
+            due:      taskDue.value,
+            column:   currentColumn
+        };
+
+        if (editingId) {
+            updateTask(editingId, taskObj);
+        } else {
+            addTask(currentColumn, taskObj);
+        }
+
+        closeModal();
+    });
+
+    // cancel button
+    cancelModalBtn.addEventListener('click', closeModal);
+
+    listTodo.addEventListener('click', function(e) {
+        const action = e.target.getAttribute('data-action');
+        const idStr  = e.target.getAttribute('data-id');
+        if (!action || !idStr) return;
+        const taskId = parseInt(idStr, 10);
+        if (action === 'delete') deleteTask(taskId);
+        if (action === 'edit')   editTask(taskId);
+    });
+
+    listInprogress.addEventListener('click', function(e) {
+        const action = e.target.getAttribute('data-action');
+        const idStr  = e.target.getAttribute('data-id');
+        if (!action || !idStr) return;
+        const taskId = parseInt(idStr, 10);
+        if (action === 'delete') deleteTask(taskId);
+        if (action === 'edit')   editTask(taskId);
+    });
+
+    listDone.addEventListener('click', function(e) {
+        const action = e.target.getAttribute('data-action');
+        const idStr  = e.target.getAttribute('data-id');
+        if (!action || !idStr) return;
+        const taskId = parseInt(idStr, 10);
+        if (action === 'delete') deleteTask(taskId);
+        if (action === 'edit')   editTask(taskId);
+    });
+
+    // filter dropdown
+    filterSelect.addEventListener('change', filterTasks);
+
+    // clear done button
+    clearDoneBtn.addEventListener('click', clearDone);
+}
+
+init(); // call init when the page loads
